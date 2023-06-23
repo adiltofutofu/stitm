@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Our Telegram</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/style/telegram.css">
+    </head>
+    <body>
+        <div class="telegram" draggable="true">
+            <div class="messages">
+            </div>
+        </div>
+        <script>
+            var messagesDiv = document.querySelector('.messages');
+
+for (var i = 1; i <= 4436; i++) {
+  var imgNumber = i.toString().padStart(4, '0');
+  var imgSrc = '/chat w her/' + imgNumber + '.png';
+  var imgElement = document.createElement('img');
+  imgElement.src = imgSrc;
+  messagesDiv.appendChild(imgElement);
+}
+            
+            var messagesDiv = document.querySelector('.telegram');
+var offsetX, offsetY;
+
+messagesDiv.addEventListener('dragstart', dragStart);
+messagesDiv.addEventListener('dragend', dragEnd);
+
+function dragStart(event) {
+    event.target.classList.add('dragging');
+    offsetX = event.clientX - messagesDiv.offsetLeft;
+    offsetY = event.clientY - messagesDiv.offsetTop;
+}
+
+function dragEnd(event) {
+    event.target.classList.remove('dragging');
+}
+
+document.addEventListener('dragover', dragOver);
+document.addEventListener('drop', drop);
+
+function dragOver(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var x = event.clientX - offsetX;
+    var y = event.clientY - offsetY;
+    messagesDiv.style.left = x + 'px';
+    messagesDiv.style.top = y + 'px';
+}
+            
+          </script>
+    </body>
+</html>
